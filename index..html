@@ -1,0 +1,443 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Bonchay Ouk</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
+<style>
+:root{
+    --bg:#0a0f1f;
+    --card:rgba(255,255,255,0.06);
+    --border:rgba(255,255,255,0.1);
+    --text:#ffffff;
+    --muted:#b4bdd0;
+    --primary:#6d5dfc;
+    --secondary:#00d4ff;
+}
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    scroll-behavior:smooth;
+}
+
+body{
+    font-family:'Inter',sans-serif;
+    background:var(--bg);
+    color:var(--text);
+    overflow-x:hidden;
+}
+
+.bg{
+    position:fixed;
+    inset:0;
+    z-index:-1;
+    background:
+        radial-gradient(circle at 20% 20%, #6d5dfc55, transparent 30%),
+        radial-gradient(circle at 80% 30%, #00d4ff55, transparent 30%),
+        radial-gradient(circle at 50% 90%, #9333ea55, transparent 30%);
+    filter:blur(90px);
+}
+
+.container{
+    width:min(1200px,90%);
+    margin:auto;
+}
+
+nav{
+    position:sticky;
+    top:0;
+    backdrop-filter:blur(16px);
+    background:rgba(10,15,31,.6);
+    border-bottom:1px solid rgba(255,255,255,.05);
+    z-index:100;
+}
+
+.nav-content{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    padding:18px 0;
+}
+
+.logo{
+    font-size:1.2rem;
+    font-weight:800;
+}
+
+.logo span{
+    color:var(--secondary);
+}
+
+nav ul{
+    display:flex;
+    list-style:none;
+    gap:24px;
+}
+
+nav a{
+    text-decoration:none;
+    color:var(--muted);
+    transition:.3s;
+}
+
+nav a:hover{
+    color:white;
+}
+
+.hero{
+    min-height:90vh;
+    display:flex;
+    align-items:center;
+}
+
+.hero-content{
+    max-width:800px;
+}
+
+.badge{
+    display:inline-block;
+    padding:8px 14px;
+    border-radius:999px;
+    background:rgba(255,255,255,.06);
+    border:1px solid rgba(255,255,255,.1);
+    margin-bottom:20px;
+}
+
+.hero h1{
+    font-size:clamp(3rem,7vw,5rem);
+    line-height:1.05;
+    margin-bottom:20px;
+}
+
+.gradient{
+    background:linear-gradient(90deg,var(--secondary),var(--primary));
+    -webkit-background-clip:text;
+    -webkit-text-fill-color:transparent;
+}
+
+.hero p{
+    color:var(--muted);
+    font-size:1.15rem;
+    line-height:1.8;
+    max-width:700px;
+}
+
+.buttons{
+    margin-top:35px;
+    display:flex;
+    gap:15px;
+    flex-wrap:wrap;
+}
+
+.btn{
+    text-decoration:none;
+    padding:14px 24px;
+    border-radius:14px;
+    font-weight:600;
+    transition:.3s;
+}
+
+.btn-primary{
+    background:linear-gradient(135deg,var(--primary),var(--secondary));
+    color:white;
+}
+
+.btn-secondary{
+    border:1px solid rgba(255,255,255,.15);
+    color:white;
+}
+
+.btn:hover{
+    transform:translateY(-3px);
+}
+
+section{
+    padding:90px 0;
+}
+
+.section-title{
+    font-size:2.2rem;
+    margin-bottom:15px;
+}
+
+.section-subtitle{
+    color:var(--muted);
+    margin-bottom:40px;
+}
+
+.grid{
+    display:grid;
+    gap:24px;
+}
+
+.skills{
+    grid-template-columns:repeat(auto-fit,minmax(180px,1fr));
+}
+
+.projects{
+    grid-template-columns:repeat(auto-fit,minmax(320px,1fr));
+}
+
+.card{
+    background:var(--card);
+    border:1px solid var(--border);
+    backdrop-filter:blur(16px);
+    border-radius:24px;
+    padding:24px;
+    transition:.35s;
+}
+
+.card:hover{
+    transform:translateY(-8px);
+    border-color:rgba(255,255,255,.2);
+}
+
+.card h3{
+    margin-bottom:12px;
+}
+
+.card p{
+    color:var(--muted);
+    line-height:1.7;
+}
+
+.tech{
+    margin-top:15px;
+    color:#8be9fd;
+    font-size:.9rem;
+}
+
+.project-links{
+    margin-top:20px;
+}
+
+.project-links a{
+    color:white;
+    text-decoration:none;
+    margin-right:15px;
+}
+
+.about-box{
+    background:var(--card);
+    border:1px solid var(--border);
+    padding:30px;
+    border-radius:24px;
+    line-height:1.9;
+    color:var(--muted);
+}
+
+.contact{
+    text-align:center;
+}
+
+.contact p{
+    color:var(--muted);
+    margin-bottom:25px;
+}
+
+footer{
+    text-align:center;
+    padding:40px;
+    color:#7b8498;
+}
+
+.reveal{
+    opacity:0;
+    transform:translateY(30px);
+    transition:all .8s ease;
+}
+
+.reveal.active{
+    opacity:1;
+    transform:translateY(0);
+}
+
+@media(max-width:768px){
+    nav ul{
+        gap:12px;
+        font-size:.9rem;
+    }
+
+    .hero{
+        text-align:center;
+    }
+
+    .buttons{
+        justify-content:center;
+    }
+}
+</style>
+</head>
+<body>
+
+<div class="bg"></div>
+
+<nav>
+    <div class="container nav-content">
+
+        <ul>
+            <li><a href="#about">About</a></li>
+            <li><a href="#skills">Skills</a></li>
+            <li><a href="#projects">Projects</a></li>
+            <li><a href="#contact">Contact</a></li>
+        </ul>
+    </div>
+</nav>
+
+<section class="hero">
+    <div class="container hero-content">
+        <div class="badge">🚀 Flutter Developer • Lifelong Learner</div>
+
+        <h1>
+            Hi, I'm <span class="gradient">Bonchay Ouk</span>
+        </h1>
+
+        <p>
+            Passionate Flutter developer focused on building modern mobile and web applications.
+            Currently expanding my expertise in .NET backend development while creating clean,
+            responsive, and user-friendly digital experiences.
+        </p>
+
+        <div class="buttons">
+            <a href="#projects" class="btn btn-primary">View Projects</a>
+            <a href="https://github.com/bonchayhi5" target="_blank" class="btn btn-secondary">GitHub</a>
+        </div>
+    </div>
+</section>
+
+<section id="about" class="reveal">
+    <div class="container">
+        <h2 class="section-title">About Me</h2>
+
+        <div class="about-box">
+            I am a developer who enjoys creating applications that solve real-world problems.
+            My primary focus is Flutter development, where I build responsive and visually
+            appealing applications. I continuously improve my skills in backend development,
+            cloud technologies, and software architecture.
+            <br><br>
+            My goal is to grow into a full-stack developer while building a stable future for my family.
+        </div>
+    </div>
+</section>
+
+<section id="skills" class="reveal">
+    <div class="container">
+        <h2 class="section-title">Skills</h2>
+        <p class="section-subtitle">Technologies I work with</p>
+
+        <div class="grid skills">
+            <div class="card"><h3>Flutter</h3></div>
+            <div class="card"><h3>Dart</h3></div>
+            <div class="card"><h3>.NET</h3></div>
+            <div class="card"><h3>C#</h3></div>
+            <div class="card"><h3>Firebase</h3></div>
+            <div class="card"><h3>REST API</h3></div>
+            <div class="card"><h3>Git</h3></div>
+            <div class="card"><h3>GitHub</h3></div>
+        </div>
+    </div>
+</section>
+
+<section id="projects" class="reveal">
+    <div class="container">
+
+        <h2 class="section-title">Featured Projects</h2>
+        <p class="section-subtitle">Some of my recent work</p>
+
+        <div class="grid projects">
+
+            <div class="card">
+
+                <h3>📱 Instagram Clone Flutter</h3>
+
+                <p>
+                    Instagram-inspired application built with Flutter.
+                    Features modern UI design, feed screens, profile layouts,
+                    responsive design, and mobile-first development principles.
+                </p>
+
+                <div class="tech">
+                    Flutter • Dart
+                </div>
+
+                <div class="project-links">
+                    <a href="https://bonchayhi5.github.io/instagram-clone-flutter/" target="_blank">
+                        Live Demo →
+                    </a>
+                </div>
+            </div>
+
+            <div class="card">
+
+                <h3>📱 StockX Clone Flutter</h3>
+
+                <p>
+                    Instagram-inspired application built with Flutter.
+                    Features modern UI design, feed screens, profile layouts,
+                    responsive design, and mobile-first development principles.
+                </p>
+
+                <div class="tech">
+                    Flutter • Dart
+                </div>
+
+                <div class="project-links">
+                    <a href="https://bonchayhi5.github.io/stockX-clone-ui-flutter/#" target="_blank">
+                        Live Demo →
+                    </a>
+                </div>
+            </div>
+
+
+          
+
+        </div>
+    </div>
+</section>
+
+<section id="contact" class="reveal">
+    <div class="container contact">
+
+        <h2 class="section-title">Let's Connect</h2>
+
+        <p>
+            Interested in collaborating or discussing opportunities?
+        </p>
+
+        <div class="buttons" style="justify-content:center;">
+            <a href="https://github.com/bonchayhi5" target="_blank" class="btn btn-primary">
+                GitHub
+            </a>
+        </div>
+
+    </div>
+</section>
+
+<footer>
+    © 2026 Bonchay Ouk
+</footer>
+
+<script>
+const reveals = document.querySelectorAll(".reveal");
+
+window.addEventListener("scroll", () => {
+    reveals.forEach((el) => {
+        const top = el.getBoundingClientRect().top;
+        const visible = 120;
+
+        if(top < window.innerHeight - visible){
+            el.classList.add("active");
+        }
+    });
+});
+
+window.dispatchEvent(new Event("scroll"));
+</script>
+
+</body>
+</html>
